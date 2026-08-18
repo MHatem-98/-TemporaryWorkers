@@ -1,0 +1,512 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  >
+
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    rel="stylesheet"
+  >
+
+  <link href="../assets/css/app.css" rel="stylesheet">
+
+  <title>Create Group | TAMAM</title>
+</head>
+
+<body>
+
+  <aside class="app-sidebar" aria-label="Main navigation">
+    <div class="sidebar-brand">
+      <div>
+        <div class="brand-name">TAMAM</div>
+        <div class="brand-subtitle">Temporary Workforce</div>
+      </div>
+
+      <button
+        class="btn btn-sm text-white d-lg-none"
+        type="button"
+        data-sidebar-close
+        aria-label="Close menu"
+      >
+        <i class="bi bi-x-lg"></i>
+      </button>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-link" href="#">
+        <i class="bi bi-grid"></i>
+        <span>Dashboard</span>
+      </a>
+
+      <a class="sidebar-link active" href="s01-groups.html">
+        <i class="bi bi-people"></i>
+        <span>Groups</span>
+      </a>
+
+      <a class="sidebar-link" href="s05-workers.html">
+        <i class="bi bi-person"></i>
+        <span>Workers</span>
+      </a>
+
+      <a class="sidebar-link" href="a01-group-attendance.html">
+        <i class="bi bi-clock"></i>
+        <span>Attendance</span>
+      </a>
+
+      <a class="sidebar-link" href="p01-open-payroll.html">
+        <i class="bi bi-calendar2-check"></i>
+        <span>Payroll</span>
+      </a>
+
+      <a class="sidebar-link" href="#">
+        <i class="bi bi-bar-chart"></i>
+        <span>Reports</span>
+      </a>
+
+      <a class="sidebar-link" href="#">
+        <i class="bi bi-gear"></i>
+        <span>Settings</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <a class="sidebar-link" href="#">
+        <i class="bi bi-box-arrow-left"></i>
+        <span>Sign out</span>
+      </a>
+    </div>
+  </aside>
+
+  <div id="sidebar-backdrop" class="sidebar-backdrop"></div>
+
+  <div class="app-main">
+    <header class="app-topbar">
+      <strong>TAMAM</strong>
+
+      <button
+        class="btn text-white"
+        type="button"
+        data-sidebar-open
+        aria-label="Open menu"
+      >
+        <i class="bi bi-list fs-4"></i>
+      </button>
+    </header>
+
+    <main class="page-content">
+      <div class="page-container">
+
+        <header class="page-heading">
+          <div>
+            <nav aria-label="Breadcrumb">
+              <ol class="breadcrumb tamam-breadcrumb">
+                <li class="breadcrumb-item">
+                  <a href="s01-groups.html">Groups</a>
+                </li>
+
+                <li class="breadcrumb-item active" aria-current="page">
+                  Create group
+                </li>
+              </ol>
+            </nav>
+
+            <h1 class="page-title">Create Group</h1>
+
+            <p class="page-subtitle">
+              Set up the group, its operational defaults, and assigned workers.
+            </p>
+          </div>
+
+          <span class="status-badge status-neutral">
+            <i class="bi bi-pencil-square"></i>
+            Draft
+          </span>
+        </header>
+
+        <!-- Stepper -->
+        <section
+          class="tamam-card wizard-card mb-4"
+          aria-label="Group creation progress"
+        >
+          <div class="group-stepper">
+
+            <a
+              class="group-step active"
+              href="s02-group-details.html"
+              aria-current="step"
+            >
+              <span class="step-circle">1</span>
+
+              <span class="step-copy">
+                <strong>Basic Information</strong>
+                <small>Group identity and period</small>
+              </span>
+            </a>
+
+            <a class="group-step" href="s03-work-schedule.html">
+              <span class="step-circle">2</span>
+
+              <span class="step-copy">
+                <strong>Operational Defaults</strong>
+                <small>Schedule and policies</small>
+              </span>
+            </a>
+
+            <a class="group-step" href="s06-assign-workers.html">
+              <span class="step-circle">3</span>
+
+              <span class="step-copy">
+                <strong>Assign Workers</strong>
+                <small>Members and assignments</small>
+              </span>
+            </a>
+
+          </div>
+        </section>
+
+        <form id="group-details-form" novalidate>
+          <div class="row g-4">
+
+            <!-- Main form -->
+            <div class="col-xl-8">
+              <section class="tamam-card h-100">
+
+                <div
+                  class="tamam-card-header d-flex align-items-center justify-content-between gap-3"
+                >
+                  <div>
+                    <h2 class="section-title">Basic Information</h2>
+
+                    <p class="section-subtitle">
+                      Define where and when this group will operate.
+                    </p>
+                  </div>
+
+                  <span class="required-note">
+                    <span>*</span> Required fields
+                  </span>
+                </div>
+
+                <div class="tamam-card-body">
+                  <div class="row g-4">
+
+                    <div class="col-12">
+                      <label class="form-label required" for="group-name">
+                        Group name
+                      </label>
+
+                      <input
+                        class="form-control"
+                        id="group-name"
+                        name="groupName"
+                        type="text"
+                        placeholder="e.g. Riyadh Exhibition Team — August"
+                        maxlength="100"
+                        required
+                      >
+
+                      <div class="form-text">
+                        Use a clear name that identifies the project, location,
+                        or assignment.
+                      </div>
+
+                      <div class="invalid-feedback">
+                        Enter a group name.
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <label
+                        class="form-label required"
+                        for="work-type-detail"
+                      >
+                        Work type
+                      </label>
+
+                      <select
+                        class="form-select"
+                        id="work-type-detail"
+                        name="workType"
+                        required
+                      >
+                        <option value="" selected disabled>
+                          Select work type
+                        </option>
+                        <option value="Exhibition">Exhibition</option>
+                        <option value="Warehouse">Warehouse</option>
+                        <option value="Event">Event</option>
+                        <option value="Project">Project</option>
+                        <option value="Other">Other</option>
+                      </select>
+
+                      <div class="invalid-feedback">
+                        Select a work type.
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <label
+                        class="form-label required"
+                        for="project-location"
+                      >
+                        Project / location
+                      </label>
+
+                      <select
+                        class="form-select"
+                        id="project-location"
+                        name="projectLocation"
+                        required
+                      >
+                        <option value="" selected disabled>
+                          Select project or location
+                        </option>
+                        <option value="Riyadh International Exhibition">
+                          Riyadh International Exhibition
+                        </option>
+                        <option value="North Warehouses">
+                          North Warehouses
+                        </option>
+                        <option value="Events Center">
+                          Events Center
+                        </option>
+                        <option value="Development Site">
+                          Development Site
+                        </option>
+                      </select>
+
+                      <div class="invalid-feedback">
+                        Select a project or location.
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <label
+                        class="form-label required"
+                        for="group-start-date"
+                      >
+                        Start date
+                      </label>
+
+                      <input
+                        class="form-control"
+                        id="group-start-date"
+                        name="startDate"
+                        type="date"
+                        required
+                      >
+
+                      <div class="invalid-feedback">
+                        Select a start date.
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <label
+                        class="form-label required"
+                        for="group-end-date"
+                      >
+                        End date
+                      </label>
+
+                      <input
+                        class="form-control"
+                        id="group-end-date"
+                        name="endDate"
+                        type="date"
+                        required
+                      >
+
+                      <div
+                        class="invalid-feedback"
+                        id="end-date-feedback"
+                      >
+                        Select an end date.
+                      </div>
+                    </div>
+
+                    <div class="col-12">
+                      <div
+                        class="period-summary"
+                        id="group-period-summary"
+                        aria-live="polite"
+                      >
+                        <i class="bi bi-calendar3"></i>
+
+                        <span>
+                          Select a start and end date to calculate the group
+                          period.
+                        </span>
+                      </div>
+                    </div>
+
+                    <div class="col-12">
+                      <div
+                        class="d-flex justify-content-between align-items-center gap-3"
+                      >
+                        <label
+                          class="form-label"
+                          for="group-description"
+                        >
+                          Description
+                        </label>
+
+                        <span class="field-counter">
+                          <span id="description-count">0</span>/500
+                        </span>
+                      </div>
+
+                      <textarea
+                        class="form-control"
+                        id="group-description"
+                        name="description"
+                        rows="5"
+                        maxlength="500"
+                        placeholder="Add the group purpose, responsibilities, or operational notes..."
+                      ></textarea>
+                    </div>
+
+                  </div>
+                </div>
+              </section>
+            </div>
+
+            <!-- Side information -->
+            <div class="col-xl-4">
+              <aside class="tamam-card guidance-card mb-4">
+                <div class="tamam-card-body">
+
+                  <div class="guidance-icon">
+                    <i class="bi bi-lightbulb"></i>
+                  </div>
+
+                  <h2 class="section-title mb-2">
+                    Before you continue
+                  </h2>
+
+                  <p class="text-secondary">
+                    The group is an operational container. It does not replace
+                    a worker contract or create a payroll period.
+                  </p>
+
+                  <ul class="guidance-list">
+                    <li>
+                      Assignment dates must stay within this group period.
+                    </li>
+
+                    <li>
+                      Worker contracts must be active when assigned.
+                    </li>
+
+                    <li>
+                      Defaults can be overridden for individual assignments.
+                    </li>
+                  </ul>
+
+                </div>
+              </aside>
+
+              <aside class="tamam-card">
+                <div class="tamam-card-header">
+                  <h2 class="section-title">Creation progress</h2>
+                </div>
+
+                <div class="tamam-card-body">
+                  <div
+                    class="progress mb-3"
+                    role="progressbar"
+                    aria-label="Creation progress"
+                    aria-valuenow="33"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                  >
+                    <div class="progress-bar" style="width: 33%">
+                      33%
+                    </div>
+                  </div>
+
+                  <p class="small text-secondary mb-0">
+                    Complete the basic information, then configure operational
+                    defaults and assign workers.
+                  </p>
+                </div>
+              </aside>
+            </div>
+
+          </div>
+
+          <div class="form-action-bar mt-4">
+            <a class="btn btn-light border" href="s01-groups.html">
+              <i class="bi bi-x-lg me-2"></i>
+              Cancel
+            </a>
+
+            <div class="d-flex gap-2">
+              <button
+                class="btn btn-outline-primary"
+                id="save-group-draft"
+                type="button"
+              >
+                <i class="bi bi-save me-2"></i>
+                Save Draft
+              </button>
+
+              <button class="btn btn-primary" type="submit">
+                Save &amp; Continue
+                <i class="bi bi-arrow-right ms-2"></i>
+              </button>
+            </div>
+          </div>
+        </form>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- Draft saved toast -->
+  <div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div
+      id="group-form-toast"
+      class="toast tamam-toast"
+      role="status"
+      aria-live="polite"
+      aria-atomic="true"
+    >
+      <div class="toast-header">
+        <i class="bi bi-check-circle-fill text-success me-2"></i>
+        <strong class="me-auto">Group draft</strong>
+
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="toast"
+          aria-label="Close"
+        ></button>
+      </div>
+
+      <div class="toast-body">
+        Your group draft has been saved.
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/js/layout.js"></script>
+  <script src="../assets/js/app.js"></script>
+  <script src="../assets/js/group-details.js"></script>
+</body>
+</html>

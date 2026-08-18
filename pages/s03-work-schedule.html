@@ -1,0 +1,647 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  >
+
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    rel="stylesheet"
+  >
+
+  <link href="../assets/css/app.css" rel="stylesheet">
+
+  <title>Operational Defaults | TAMAM</title>
+</head>
+
+<body>
+
+  <aside class="app-sidebar" aria-label="Main navigation">
+    <div class="sidebar-brand">
+      <div>
+        <div class="brand-name">TAMAM</div>
+        <div class="brand-subtitle">Temporary Workforce</div>
+      </div>
+
+      <button
+        class="btn btn-sm text-white d-lg-none"
+        type="button"
+        data-sidebar-close
+        aria-label="Close menu"
+      >
+        <i class="bi bi-x-lg"></i>
+      </button>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-link" href="#">
+        <i class="bi bi-grid"></i>
+        <span>Dashboard</span>
+      </a>
+
+      <a class="sidebar-link active" href="s01-groups.html">
+        <i class="bi bi-people"></i>
+        <span>Groups</span>
+      </a>
+
+      <a class="sidebar-link" href="s05-workers.html">
+        <i class="bi bi-person"></i>
+        <span>Workers</span>
+      </a>
+
+      <a class="sidebar-link" href="a01-group-attendance.html">
+        <i class="bi bi-clock"></i>
+        <span>Attendance</span>
+      </a>
+
+      <a class="sidebar-link" href="p01-open-payroll.html">
+        <i class="bi bi-calendar2-check"></i>
+        <span>Payroll</span>
+      </a>
+
+      <a class="sidebar-link" href="#">
+        <i class="bi bi-bar-chart"></i>
+        <span>Reports</span>
+      </a>
+
+      <a class="sidebar-link" href="#">
+        <i class="bi bi-gear"></i>
+        <span>Settings</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <a class="sidebar-link" href="#">
+        <i class="bi bi-box-arrow-left"></i>
+        <span>Sign out</span>
+      </a>
+    </div>
+  </aside>
+
+  <div id="sidebar-backdrop" class="sidebar-backdrop"></div>
+
+  <div class="app-main">
+    <header class="app-topbar">
+      <strong>TAMAM</strong>
+
+      <button
+        class="btn text-white"
+        type="button"
+        data-sidebar-open
+        aria-label="Open menu"
+      >
+        <i class="bi bi-list fs-4"></i>
+      </button>
+    </header>
+
+    <main class="page-content">
+      <div class="page-container">
+
+        <header class="page-heading">
+          <div>
+            <nav aria-label="Breadcrumb">
+              <ol class="breadcrumb tamam-breadcrumb">
+                <li class="breadcrumb-item">
+                  <a href="s01-groups.html">Groups</a>
+                </li>
+
+                <li class="breadcrumb-item">
+                  <a href="s02-group-details.html">Create group</a>
+                </li>
+
+                <li class="breadcrumb-item active" aria-current="page">
+                  Operational defaults
+                </li>
+              </ol>
+            </nav>
+
+            <h1 class="page-title">Operational Defaults</h1>
+
+            <p class="page-subtitle">
+              Configure the default schedule and policies for this group.
+            </p>
+          </div>
+
+          <span class="status-badge status-neutral">
+            <i class="bi bi-pencil-square"></i>
+            Draft
+          </span>
+        </header>
+
+        <!-- Stepper -->
+        <section
+          class="tamam-card wizard-card mb-4"
+          aria-label="Group creation progress"
+        >
+          <div class="group-stepper">
+
+            <a class="group-step completed" href="s02-group-details.html">
+              <span class="step-circle">
+                <i class="bi bi-check-lg"></i>
+              </span>
+
+              <span class="step-copy">
+                <strong>Basic Information</strong>
+                <small>Group identity and period</small>
+              </span>
+            </a>
+
+            <a
+              class="group-step active"
+              href="s03-work-schedule.html"
+              aria-current="step"
+            >
+              <span class="step-circle">2</span>
+
+              <span class="step-copy">
+                <strong>Operational Defaults</strong>
+                <small>Schedule and policies</small>
+              </span>
+            </a>
+
+            <a class="group-step" href="s06-assign-workers.html">
+              <span class="step-circle">3</span>
+
+              <span class="step-copy">
+                <strong>Assign Workers</strong>
+                <small>Members and assignments</small>
+              </span>
+            </a>
+
+          </div>
+        </section>
+
+        <form id="operational-defaults-form" novalidate>
+          <div class="row g-4">
+
+            <div class="col-xl-8">
+
+              <!-- Schedule -->
+              <section class="tamam-card mb-4">
+                <div
+                  class="tamam-card-header d-flex justify-content-between align-items-center gap-3"
+                >
+                  <div>
+                    <h2 class="section-title">Default Work Schedule</h2>
+
+                    <p class="section-subtitle">
+                      Select the schedule applied to new assignments by default.
+                    </p>
+                  </div>
+
+                  <span class="required-note">
+                    <span>*</span> Required
+                  </span>
+                </div>
+
+                <div class="tamam-card-body">
+                  <div class="row g-4">
+
+                    <div class="col-md-8">
+                      <label
+                        class="form-label required"
+                        for="default-schedule"
+                      >
+                        Work schedule
+                      </label>
+
+                      <select
+                        class="form-select"
+                        id="default-schedule"
+                        name="defaultSchedule"
+                        required
+                      >
+                        <option value="" selected disabled>
+                          Select work schedule
+                        </option>
+
+                        <option value="standard">
+                          Standard Day Shift
+                        </option>
+
+                        <option value="split">
+                          Split Shift
+                        </option>
+
+                        <option value="evening">
+                          Evening Shift
+                        </option>
+
+                        <option value="flexible">
+                          Flexible Schedule
+                        </option>
+                      </select>
+
+                      <div class="invalid-feedback">
+                        Select a default work schedule.
+                      </div>
+                    </div>
+
+                    <div class="col-md-4 d-flex align-items-end">
+                      <button
+                        class="btn btn-outline-primary w-100"
+                        type="button"
+                        id="preview-schedule-button"
+                      >
+                        <i class="bi bi-eye me-2"></i>
+                        Preview Schedule
+                      </button>
+                    </div>
+
+                    <div class="col-12">
+                      <div
+                        class="schedule-preview empty"
+                        id="schedule-preview"
+                        aria-live="polite"
+                      >
+                        <div class="schedule-preview-icon">
+                          <i class="bi bi-calendar-week"></i>
+                        </div>
+
+                        <div>
+                          <strong>No schedule selected</strong>
+
+                          <p>
+                            Select a schedule to display its working days and
+                            sessions.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </section>
+
+              <!-- Policies -->
+              <section class="tamam-card mb-4">
+                <div class="tamam-card-header">
+                  <h2 class="section-title">Default Policies</h2>
+
+                  <p class="section-subtitle">
+                    These policies act as defaults unless an assignment has an
+                    authorized override.
+                  </p>
+                </div>
+
+                <div class="tamam-card-body">
+                  <div class="row g-4">
+
+                    <div class="col-md-6">
+                      <label
+                        class="form-label required"
+                        for="attendance-policy"
+                      >
+                        Attendance policy
+                      </label>
+
+                      <select
+                        class="form-select"
+                        id="attendance-policy"
+                        name="attendancePolicy"
+                        required
+                      >
+                        <option value="" selected disabled>
+                          Select attendance policy
+                        </option>
+
+                        <option value="standard">
+                          Standard Attendance Policy
+                        </option>
+
+                        <option value="strict">
+                          Strict Attendance Policy
+                        </option>
+
+                        <option value="flexible">
+                          Flexible Attendance Policy
+                        </option>
+
+                        <option value="event">
+                          Event Workforce Policy
+                        </option>
+                      </select>
+
+                      <div class="form-text">
+                        Controls lateness, missing punches, early leave, and
+                        extra time.
+                      </div>
+
+                      <div class="invalid-feedback">
+                        Select an attendance policy.
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <label
+                        class="form-label required"
+                        for="payroll-policy"
+                      >
+                        Payroll policy
+                      </label>
+
+                      <select
+                        class="form-select"
+                        id="payroll-policy"
+                        name="payrollPolicy"
+                        required
+                      >
+                        <option value="" selected disabled>
+                          Select payroll policy
+                        </option>
+
+                        <option value="hourly-standard">
+                          Hourly Standard Policy
+                        </option>
+
+                        <option value="daily-standard">
+                          Daily Standard Policy
+                        </option>
+
+                        <option value="event-payment">
+                          Event Payment Policy
+                        </option>
+
+                        <option value="project-payment">
+                          Project Payment Policy
+                        </option>
+                      </select>
+
+                      <div class="form-text">
+                        Controls regular pay, overtime, allowances, and
+                        deductions.
+                      </div>
+
+                      <div class="invalid-feedback">
+                        Select a payroll policy.
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </section>
+
+              <!-- Suggested financial defaults -->
+              <section class="tamam-card">
+                <div
+                  class="tamam-card-header d-flex align-items-center justify-content-between gap-3"
+                >
+                  <div>
+                    <h2 class="section-title">
+                      Suggested Financial Defaults
+                    </h2>
+
+                    <p class="section-subtitle">
+                      Optional values used only to prefill worker assignments.
+                    </p>
+                  </div>
+
+                  <div class="form-check form-switch m-0">
+                    <input
+                      class="form-check-input"
+                      id="financial-defaults-toggle"
+                      type="checkbox"
+                      role="switch"
+                    >
+
+                    <label
+                      class="form-check-label"
+                      for="financial-defaults-toggle"
+                    >
+                      Enable
+                    </label>
+                  </div>
+                </div>
+
+                <div
+                  class="tamam-card-body financial-defaults-content"
+                  id="financial-defaults-content"
+                  aria-hidden="true"
+                >
+                  <div class="financial-warning mb-4">
+                    <i class="bi bi-info-circle"></i>
+
+                    <span>
+                      These values are suggestions only. An active worker
+                      contract remains the authoritative source for pay.
+                    </span>
+                  </div>
+
+                  <fieldset id="financial-defaults-fields" disabled>
+                    <div class="row g-4">
+
+                      <div class="col-md-4">
+                        <label class="form-label" for="pay-basis">
+                          Pay basis
+                        </label>
+
+                        <select
+                          class="form-select"
+                          id="pay-basis"
+                          name="payBasis"
+                        >
+                          <option value="Hourly">Hourly</option>
+                          <option value="Daily">Daily</option>
+                          <option value="Fixed">Fixed amount</option>
+                        </select>
+                      </div>
+
+                      <div class="col-md-4">
+                        <label class="form-label" for="suggested-rate">
+                          Suggested rate
+                        </label>
+
+                        <div class="input-group">
+                          <input
+                            class="form-control"
+                            id="suggested-rate"
+                            name="suggestedRate"
+                            type="number"
+                            min="0"
+                            step="0.01"
+                            placeholder="0.00"
+                          >
+
+                          <span class="input-group-text">SAR</span>
+                        </div>
+                      </div>
+
+                      <div class="col-md-4">
+                        <label class="form-label" for="payment-cycle">
+                          Payment cycle
+                        </label>
+
+                        <select
+                          class="form-select"
+                          id="payment-cycle"
+                          name="paymentCycle"
+                        >
+                          <option value="Weekly">Weekly</option>
+                          <option value="10 days">Every 10 days</option>
+                          <option value="Biweekly">Every 2 weeks</option>
+                          <option value="Monthly">Monthly</option>
+                        </select>
+                      </div>
+
+                    </div>
+                  </fieldset>
+                </div>
+              </section>
+
+            </div>
+
+            <!-- Right side -->
+            <div class="col-xl-4">
+              <aside class="tamam-card guidance-card mb-4">
+                <div class="tamam-card-body">
+                  <div class="guidance-icon">
+                    <i class="bi bi-diagram-3"></i>
+                  </div>
+
+                  <h2 class="section-title mb-2">
+                    Default priority
+                  </h2>
+
+                  <p class="text-secondary">
+                    The system uses the most specific authorized value
+                    available.
+                  </p>
+
+                  <div class="priority-list">
+                    <div>
+                      <span>Work schedule</span>
+                      <small>
+                        Assignment override → Group default → System default
+                      </small>
+                    </div>
+
+                    <div>
+                      <span>Attendance policy</span>
+                      <small>
+                        Assignment override → Group default → System default
+                      </small>
+                    </div>
+
+                    <div>
+                      <span>Payroll policy</span>
+                      <small>
+                        Assignment override → Contract → Group default
+                      </small>
+                    </div>
+
+                    <div>
+                      <span>Pay rate</span>
+                      <small>
+                        Assignment override → Active contract
+                      </small>
+                    </div>
+                  </div>
+                </div>
+              </aside>
+
+              <aside class="tamam-card">
+                <div class="tamam-card-header">
+                  <h2 class="section-title">Creation progress</h2>
+                </div>
+
+                <div class="tamam-card-body">
+                  <div
+                    class="progress mb-3"
+                    role="progressbar"
+                    aria-label="Creation progress"
+                    aria-valuenow="66"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                  >
+                    <div class="progress-bar" style="width: 66%">
+                      66%
+                    </div>
+                  </div>
+
+                  <p class="small text-secondary mb-0">
+                    Basic information is complete. Configure the defaults,
+                    then assign workers.
+                  </p>
+                </div>
+              </aside>
+            </div>
+
+          </div>
+
+          <div class="form-action-bar mt-4">
+            <a
+              class="btn btn-light border"
+              href="s02-group-details.html"
+            >
+              <i class="bi bi-arrow-left me-2"></i>
+              Previous
+            </a>
+
+            <div class="d-flex gap-2">
+              <button
+                class="btn btn-outline-primary"
+                id="save-defaults-draft"
+                type="button"
+              >
+                <i class="bi bi-save me-2"></i>
+                Save Draft
+              </button>
+
+              <button class="btn btn-primary" type="submit">
+                Save &amp; Continue
+                <i class="bi bi-arrow-right ms-2"></i>
+              </button>
+            </div>
+          </div>
+        </form>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div
+      id="defaults-toast"
+      class="toast tamam-toast"
+      role="status"
+      aria-live="polite"
+      aria-atomic="true"
+    >
+      <div class="toast-header">
+        <i class="bi bi-check-circle-fill text-success me-2"></i>
+        <strong class="me-auto">Operational defaults</strong>
+
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="toast"
+          aria-label="Close"
+        ></button>
+      </div>
+
+      <div class="toast-body">
+        Your operational defaults have been saved.
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/js/layout.js"></script>
+  <script src="../assets/js/app.js"></script>
+  <script src="../assets/js/operational-defaults.js"></script>
+</body>
+</html>

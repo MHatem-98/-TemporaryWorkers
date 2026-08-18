@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="../assets/css/app.css" rel="stylesheet">
+  <title>Groups (Contracts) | TAMAM</title>
+</head>
+<body>
+  
+  <aside class="app-sidebar" aria-label="Main navigation">
+    <div class="sidebar-brand">
+      <div><div class="brand-name">TAMAM</div><div class="brand-subtitle">Temporary Workforce</div></div>
+      <button class="btn btn-sm text-white d-lg-none" data-sidebar-close aria-label="Close menu"><i class="bi bi-x-lg"></i></button>
+    </div>
+    <nav class="sidebar-nav">
+      <a class="sidebar-link" href="#"><i class="bi bi-grid"></i><span>Dashboard</span></a>
+      <a class="sidebar-link active" href="s01-groups.html"><i class="bi bi-people"></i><span>Groups</span></a>
+      <a class="sidebar-link " href="s05-workers.html"><i class="bi bi-person"></i><span>Workers</span></a>
+      <a class="sidebar-link " href="a01-group-attendance.html"><i class="bi bi-clock"></i><span>Attendance</span></a>
+      <a class="sidebar-link " href="p01-open-payroll.html"><i class="bi bi-calendar2-check"></i><span>Payroll</span></a>
+      <a class="sidebar-link" href="#"><i class="bi bi-bar-chart"></i><span>Reports</span></a>
+      <a class="sidebar-link" href="#"><i class="bi bi-gear"></i><span>Settings</span></a>
+    </nav>
+    <div class="sidebar-footer"><a class="sidebar-link" href="#"><i class="bi bi-box-arrow-left"></i><span>Sign out</span></a></div>
+  </aside>
+  <div id="sidebar-backdrop" class="sidebar-backdrop"></div>
+  <div class="app-main">
+    <header class="app-topbar">
+      <strong>TAMAM</strong>
+      <button class="btn text-white" data-sidebar-open aria-label="Open menu"><i class="bi bi-list fs-4"></i></button>
+    </header>
+    <main class="page-content">
+      <div class="page-container">
+        <header class="page-heading align-items-center">
+          <div>
+            <h1 class="page-title">Groups (Contracts)</h1>
+            <p class="page-subtitle">Manage temporary workforce groups and contracts.</p>
+          </div>
+          <a class="btn btn-primary d-inline-flex align-items-center gap-2" href="s02-group-details.html">
+            <i class="bi bi-plus-lg"></i><span>Create New Group</span>
+          </a>
+        </header>
+
+        <section class="tamam-card filter-card mb-3" aria-label="Group filters">
+          <div class="tamam-card-body">
+            <form id="group-filters" class="row g-3 align-items-end">
+              <div class="col-12 col-md-6 col-xl-3">
+                <label class="form-label" for="group-search">Group Name</label>
+                <div class="input-group">
+                  <span class="input-group-text bg-white"><i class="bi bi-search"></i></span>
+                  <input id="group-search" class="form-control" type="search" placeholder="Search by group name...">
+                </div>
+              </div>
+              <div class="col-12 col-md-6 col-xl">
+                <label class="form-label" for="work-type">Work Type</label>
+                <select id="work-type" class="form-select">
+                  <option selected>All work types</option>
+                  <option>Exhibition</option>
+                  <option>Warehouse</option>
+                  <option>Events</option>
+                  <option>Project</option>
+                </select>
+              </div>
+              <div class="col-12 col-md-6 col-xl">
+                <label class="form-label" for="project-site">Project / Site</label>
+                <select id="project-site" class="form-select">
+                  <option selected>All projects / sites</option>
+                  <option>Riyadh International Exhibition</option>
+                  <option>Riyadh Central Warehouses</option>
+                  <option>Riyadh Events Center</option>
+                  <option>Digital Transformation Project</option>
+                </select>
+              </div>
+              <div class="col-12 col-md-6 col-xl">
+                <label class="form-label" for="group-status">Status</label>
+                <select id="group-status" class="form-select">
+                  <option selected>All statuses</option>
+                  <option>Active</option>
+                  <option>Completed</option>
+                  <option>Upcoming</option>
+                </select>
+              </div>
+              <div class="col-12 col-xl-auto">
+                <button class="btn btn-outline-secondary w-100 d-inline-flex align-items-center justify-content-center gap-2" type="reset">
+                  <i class="bi bi-arrow-counterclockwise"></i><span>Reset Filters</span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <section class="tamam-card">
+          <div class="tamam-card-header d-flex align-items-center justify-content-between gap-3">
+            <div>
+              <h2 class="h6 mb-1">Workforce Groups</h2>
+              <p class="small text-secondary mb-0">Contracts and assigned temporary workers</p>
+            </div>
+            <div class="dropdown">
+              <button class="icon-button" type="button" data-bs-toggle="dropdown" data-bs-boundary="viewport" aria-expanded="false" aria-label="Workforce groups options">
+                <i class="bi bi-three-dots"></i>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end tamam-dropdown">
+                <li><button class="dropdown-item" type="button" data-table-action="export-csv"><i class="bi bi-filetype-csv"></i><span>Export CSV</span></button></li>
+                <li><button class="dropdown-item" type="button" data-table-action="print"><i class="bi bi-printer"></i><span>Print group list</span></button></li>
+                <li><button class="dropdown-item" type="button" data-table-action="refresh"><i class="bi bi-arrow-clockwise"></i><span>Refresh data</span></button></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><button class="dropdown-item" type="button" data-table-action="toggle-completed"><i class="bi bi-eye-slash"></i><span data-completed-label>Hide completed groups</span></button></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="workforce-table-wrap">
+            <table class="table align-middle workforce-table">
+              <thead>
+                <tr>
+                  <th scope="col">Group Name</th>
+                  <th scope="col">Work Type</th>
+                  <th scope="col">Project / Site</th>
+                  <th scope="col">Start Date</th>
+                  <th scope="col">End Date</th>
+                  <th scope="col">Workers</th>
+                  <th scope="col">Status</th>
+                  <th scope="col" class="text-end">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr data-group-row data-name="riyadh expo august" data-work-type="Exhibition" data-project="Riyadh International Exhibition" data-status="Active">
+                  <td><a class="table-primary-link" href="s02-group-details.html">Riyadh Expo — August</a></td>
+                  <td>Exhibition</td>
+                  <td>Riyadh International Exhibition</td>
+                  <td>10/08/2026</td>
+                  <td>25/08/2026</td>
+                  <td><strong>10</strong></td>
+                  <td><span class="status-badge status-success">Active</span></td>
+                  <td class="text-end">
+                    <div class="dropdown">
+                      <button class="icon-button" type="button" data-bs-toggle="dropdown" data-bs-boundary="viewport" aria-expanded="false" aria-label="Actions for Riyadh Expo — August"><i class="bi bi-three-dots-vertical"></i></button>
+                      <ul class="dropdown-menu dropdown-menu-end tamam-dropdown">
+                        <li><a class="dropdown-item" href="s02-group-details.html?group=riyadh-expo"><i class="bi bi-eye"></i><span>View details</span></a></li>
+                        <li><a class="dropdown-item" href="s02-group-details.html?mode=edit&amp;group=riyadh-expo"><i class="bi bi-pencil-square"></i><span>Edit group</span></a></li>
+                        <li><a class="dropdown-item" href="s06-assign-workers.html?group=riyadh-expo"><i class="bi bi-person-plus"></i><span>Assign workers</span></a></li>
+                        <li><button class="dropdown-item" type="button" data-row-action="duplicate"><i class="bi bi-copy"></i><span>Duplicate group</span></button></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><button class="dropdown-item text-danger" type="button" data-row-action="close" data-next-status="Completed"><i class="bi bi-lock"></i><span>Close group</span></button></li>
+                      </ul>
+                    </div>
+                  </td>
+                </tr>
+                <tr data-group-row data-name="warehouse workers august" data-work-type="Warehouse" data-project="Riyadh Central Warehouses" data-status="Active">
+                  <td><a class="table-primary-link" href="s02-group-details.html">Warehouse Workers — August</a></td>
+                  <td>Warehouse</td>
+                  <td>Riyadh Central Warehouses</td>
+                  <td>19/08/2026</td>
+                  <td>30/08/2026</td>
+                  <td><strong>20</strong></td>
+                  <td><span class="status-badge status-success">Active</span></td>
+                  <td class="text-end">
+                    <div class="dropdown">
+                      <button class="icon-button" type="button" data-bs-toggle="dropdown" data-bs-boundary="viewport" aria-expanded="false" aria-label="Actions for Warehouse Workers — August"><i class="bi bi-three-dots-vertical"></i></button>
+                      <ul class="dropdown-menu dropdown-menu-end tamam-dropdown">
+                        <li><a class="dropdown-item" href="s02-group-details.html?group=warehouse-workers"><i class="bi bi-eye"></i><span>View details</span></a></li>
+                        <li><a class="dropdown-item" href="s02-group-details.html?mode=edit&amp;group=warehouse-workers"><i class="bi bi-pencil-square"></i><span>Edit group</span></a></li>
+                        <li><a class="dropdown-item" href="s06-assign-workers.html?group=warehouse-workers"><i class="bi bi-person-plus"></i><span>Assign workers</span></a></li>
+                        <li><button class="dropdown-item" type="button" data-row-action="duplicate"><i class="bi bi-copy"></i><span>Duplicate group</span></button></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><button class="dropdown-item text-danger" type="button" data-row-action="close" data-next-status="Completed"><i class="bi bi-lock"></i><span>Close group</span></button></li>
+                      </ul>
+                    </div>
+                  </td>
+                </tr>
+                <tr data-group-row data-name="events team august" data-work-type="Events" data-project="Riyadh Events Center" data-status="Completed">
+                  <td><a class="table-primary-link" href="s02-group-details.html">Events Team — August</a></td>
+                  <td>Events</td>
+                  <td>Riyadh Events Center</td>
+                  <td>01/08/2026</td>
+                  <td>15/08/2026</td>
+                  <td><strong>15</strong></td>
+                  <td><span class="status-badge status-neutral">Completed</span></td>
+                  <td class="text-end">
+                    <div class="dropdown">
+                      <button class="icon-button" type="button" data-bs-toggle="dropdown" data-bs-boundary="viewport" aria-expanded="false" aria-label="Actions for Events Team — August"><i class="bi bi-three-dots-vertical"></i></button>
+                      <ul class="dropdown-menu dropdown-menu-end tamam-dropdown">
+                        <li><a class="dropdown-item" href="s02-group-details.html?group=events-team"><i class="bi bi-eye"></i><span>View details</span></a></li>
+                        <li><a class="dropdown-item" href="s02-group-details.html?mode=edit&amp;group=events-team"><i class="bi bi-pencil-square"></i><span>Edit group</span></a></li>
+                        <li><a class="dropdown-item" href="s06-assign-workers.html?group=events-team"><i class="bi bi-person-plus"></i><span>Assign workers</span></a></li>
+                        <li><button class="dropdown-item" type="button" data-row-action="duplicate"><i class="bi bi-copy"></i><span>Duplicate group</span></button></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><button class="dropdown-item" type="button" data-row-action="reopen" data-next-status="Active"><i class="bi bi-unlock"></i><span>Reopen group</span></button></li>
+                        <li><button class="dropdown-item text-danger" type="button" data-row-action="archive"><i class="bi bi-archive"></i><span>Archive group</span></button></li>
+                      </ul>
+                    </div>
+                  </td>
+                </tr>
+                <tr data-group-row data-name="development team september" data-work-type="Project" data-project="Digital Transformation Project" data-status="Upcoming">
+                  <td><a class="table-primary-link" href="s02-group-details.html">Development Team — September</a></td>
+                  <td>Project</td>
+                  <td>Digital Transformation Project</td>
+                  <td>01/09/2026</td>
+                  <td>15/09/2026</td>
+                  <td><strong>23</strong></td>
+                  <td><span class="status-badge status-info">Upcoming</span></td>
+                  <td class="text-end">
+                    <div class="dropdown">
+                      <button class="icon-button" type="button" data-bs-toggle="dropdown" data-bs-boundary="viewport" aria-expanded="false" aria-label="Actions for Development Team — September"><i class="bi bi-three-dots-vertical"></i></button>
+                      <ul class="dropdown-menu dropdown-menu-end tamam-dropdown">
+                        <li><a class="dropdown-item" href="s02-group-details.html?group=development-team"><i class="bi bi-eye"></i><span>View details</span></a></li>
+                        <li><a class="dropdown-item" href="s02-group-details.html?mode=edit&amp;group=development-team"><i class="bi bi-pencil-square"></i><span>Edit group</span></a></li>
+                        <li><a class="dropdown-item" href="s06-assign-workers.html?group=development-team"><i class="bi bi-person-plus"></i><span>Assign workers</span></a></li>
+                        <li><button class="dropdown-item" type="button" data-row-action="duplicate"><i class="bi bi-copy"></i><span>Duplicate group</span></button></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><button class="dropdown-item" type="button" data-row-action="activate" data-next-status="Active"><i class="bi bi-play-circle"></i><span>Activate group</span></button></li>
+                        <li><button class="dropdown-item text-danger" type="button" data-row-action="cancel"><i class="bi bi-x-circle"></i><span>Cancel group</span></button></li>
+                      </ul>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <footer class="table-footer">
+            <span id="group-results-count">Showing 1 to 4 of 4 groups</span>
+            <div class="d-flex align-items-center gap-2">
+              <label class="small text-secondary" for="rows-per-page">Rows per page</label>
+              <select id="rows-per-page" class="form-select form-select-sm rows-select">
+                <option selected>10</option>
+                <option>20</option>
+                <option>50</option>
+              </select>
+            </div>
+          </footer>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <div class="modal fade" id="group-action-modal" tabindex="-1" aria-labelledby="group-action-title" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title fs-5" id="group-action-title">Confirm group action</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p class="mb-1" id="group-action-message">Are you sure you want to continue?</p>
+          <p class="small text-secondary mb-0">This updates the group status in the current prototype.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary" id="confirm-group-action">Confirm</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="group-action-toast" class="toast tamam-toast" role="status" aria-live="polite" aria-atomic="true">
+      <div class="d-flex">
+        <div class="toast-body"><i class="bi bi-check-circle-fill text-success me-2"></i><span id="group-toast-message">Action completed.</span></div>
+        <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/js/layout.js"></script>
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>
