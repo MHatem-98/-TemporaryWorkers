@@ -3,962 +3,136 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-    rel="stylesheet"
-  >
-
-  <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-    rel="stylesheet"
-  >
-
-  <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
-    rel="stylesheet"
-  >
-
-  <link href="../assets/css/app.css" rel="stylesheet">
-
-  <title>Assign Workers | TAMAM</title>
+  <title>Assign Workers | TAMAM Flex</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="../assets/css/setup.css" rel="stylesheet">
 </head>
+<body class="setup-app assignment-page">
+  <div class="setup-shell">
+    <aside class="setup-sidebar"></aside>
 
-<body>
+    <main class="setup-main">
+      <header class="setup-topbar">
+        <div class="top-user">
+          <span class="avatar">MA</span>
+          <div><strong>Mohammed Ahmed</strong><small>System Administrator</small></div>
+          <i class="bi bi-chevron-down"></i>
+        </div>
+        <span class="top-separator"></span>
+        <span class="top-item"><i class="bi bi-building"></i> Growth Company</span>
+        <span class="top-separator"></span>
+        <span class="top-item"><i class="bi bi-globe2"></i> English</span>
+        <span class="top-spacer"></span>
+        <span class="notification"><i class="bi bi-bell"></i></span>
+        <button class="icon-btn mobile-menu" data-sidebar-open aria-label="Open navigation"><i class="bi bi-list"></i></button>
+      </header>
 
-  <aside class="app-sidebar" aria-label="Main navigation">
-    <div class="sidebar-brand">
-      <div>
-        <div class="brand-name">TAMAM</div>
-        <div class="brand-subtitle">Temporary Workforce</div>
-      </div>
+      <div class="setup-content">
+        <div class="content-wrap">
+          <nav class="crumbs" aria-label="Breadcrumb">
+            <a href="s00-setup-dashboard.html">System Setup</a><i class="bi bi-chevron-right"></i>
+            <a href="s01-groups.html">Groups</a><i class="bi bi-chevron-right"></i>
+            <span>Assign Workers</span>
+          </nav>
 
-      <button
-        class="btn btn-sm text-white d-lg-none"
-        type="button"
-        data-sidebar-close
-        aria-label="Close menu"
-      >
-        <i class="bi bi-x-lg"></i>
-      </button>
-    </div>
-
-    <nav class="sidebar-nav">
-      <a class="sidebar-link" href="#">
-        <i class="bi bi-grid"></i>
-        <span>Dashboard</span>
-      </a>
-
-      <a class="sidebar-link active" href="s01-groups.html">
-        <i class="bi bi-people"></i>
-        <span>Groups</span>
-      </a>
-
-      <a class="sidebar-link" href="s05-workers.html">
-        <i class="bi bi-person"></i>
-        <span>Workers</span>
-      </a>
-
-      <a class="sidebar-link" href="a01-group-attendance.html">
-        <i class="bi bi-clock"></i>
-        <span>Attendance</span>
-      </a>
-
-      <a class="sidebar-link" href="p01-open-payroll.html">
-        <i class="bi bi-calendar2-check"></i>
-        <span>Payroll</span>
-      </a>
-
-      <a class="sidebar-link" href="#">
-        <i class="bi bi-bar-chart"></i>
-        <span>Reports</span>
-      </a>
-
-      <a class="sidebar-link" href="#">
-        <i class="bi bi-gear"></i>
-        <span>Settings</span>
-      </a>
-    </nav>
-
-    <div class="sidebar-footer">
-      <a class="sidebar-link" href="#">
-        <i class="bi bi-box-arrow-left"></i>
-        <span>Sign out</span>
-      </a>
-    </div>
-  </aside>
-
-  <div id="sidebar-backdrop" class="sidebar-backdrop"></div>
-
-  <div class="app-main">
-    <header class="app-topbar">
-      <strong>TAMAM</strong>
-
-      <button
-        class="btn text-white"
-        type="button"
-        data-sidebar-open
-        aria-label="Open menu"
-      >
-        <i class="bi bi-list fs-4"></i>
-      </button>
-    </header>
-
-    <main class="page-content">
-      <div class="page-container">
-
-        <header class="page-heading">
-          <div>
-            <nav aria-label="Breadcrumb">
-              <ol class="breadcrumb tamam-breadcrumb">
-                <li class="breadcrumb-item">
-                  <a href="s01-groups.html">Groups</a>
-                </li>
-
-                <li class="breadcrumb-item">
-                  <a href="s02-group-details.html">Create group</a>
-                </li>
-
-                <li class="breadcrumb-item active" aria-current="page">
-                  Assign workers
-                </li>
-              </ol>
-            </nav>
-
-            <h1 class="page-title">Assign Workers</h1>
-
-            <p class="page-subtitle">
-              Select eligible workers and define their assignment periods.
-            </p>
-          </div>
-
-          <span class="status-badge status-neutral">
-            <i class="bi bi-pencil-square"></i>
-            Draft
-          </span>
-        </header>
-
-        <!-- Stepper -->
-        <section class="tamam-card wizard-card mb-4">
-          <div class="group-stepper">
-
-            <a class="group-step completed" href="s02-group-details.html">
-              <span class="step-circle">
-                <i class="bi bi-check-lg"></i>
-              </span>
-
-              <span class="step-copy">
-                <strong>Basic Information</strong>
-                <small>Group identity and period</small>
-              </span>
-            </a>
-
-            <a class="group-step completed" href="s03-work-schedule.html">
-              <span class="step-circle">
-                <i class="bi bi-check-lg"></i>
-              </span>
-
-              <span class="step-copy">
-                <strong>Operational Defaults</strong>
-                <small>Schedule and policies</small>
-              </span>
-            </a>
-
-            <a
-              class="group-step active"
-              href="s06-assign-workers.html"
-              aria-current="step"
-            >
-              <span class="step-circle">3</span>
-
-              <span class="step-copy">
-                <strong>Assign Workers</strong>
-                <small>Members and assignments</small>
-              </span>
-            </a>
-
-          </div>
-        </section>
-
-        <!-- Group information -->
-        <section class="tamam-card group-context-card mb-4">
-          <div class="tamam-card-body">
-            <div class="group-context">
-
-              <div class="group-context-icon">
-                <i class="bi bi-people"></i>
-              </div>
-
+          <section class="assignment-title-row">
+           <div class="assignment-title-copy">
+              <h1>Assign Workers to Group</h1>
+              <p>Add workers to the group, apply defaults, or override them when needed.</p>
+            </div>
+            <div class="panel assignment-group-picker">
+              <span class="assignment-group-icon"><i class="bi bi-people"></i></span>
               <div>
-                <span class="group-context-label">Creating group</span>
-                <h2>Riyadh Exhibition Team — August</h2>
-
-                <div class="group-context-meta">
-                  <span>
-                    <i class="bi bi-geo-alt"></i>
-                    Riyadh International Exhibition
-                  </span>
-
-                  <span>
-                    <i class="bi bi-calendar3"></i>
-                    10 Aug 2026 – 25 Aug 2026
-                  </span>
-
-                  <span>
-                    <i class="bi bi-clock"></i>
-                    Standard Day Shift
-                  </span>
-                </div>
+                <span class="context-eyebrow">Selected group</span>
+                <h2>Riyadh Expo - August</h2><span class="group-worker-count">58 workers currently assigned</span>
               </div>
-
+              <i class="bi bi-chevron-down group-picker-chevron"></i>
             </div>
-          </div>
-        </section>
+            
+            <a class="btn btn-outline-secondary btn-icon assignment-back" href="s01-groups.html"><i class="bi bi-arrow-left"></i> Back</a>
+          </section>
 
-        <!-- Filters -->
-        <form
-          class="tamam-card filter-card mb-4"
-          id="worker-assignment-filters"
-        >
-          <div class="tamam-card-body">
-            <div class="row g-3 align-items-end">
-
-              <div class="col-xl-5 col-lg-4">
-                <label class="form-label" for="assignment-worker-search">
-                  Search workers
-                </label>
-
-                <div class="input-group">
-                  <span class="input-group-text">
-                    <i class="bi bi-search"></i>
-                  </span>
-
-                  <input
-                    class="form-control"
-                    id="assignment-worker-search"
-                    type="search"
-                    placeholder="Search by name, ID, or mobile number"
-                  >
-                </div>
-              </div>
-
-              <div class="col-xl-3 col-lg-3 col-md-6">
-                <label class="form-label" for="contract-status-filter">
-                  Contract status
-                </label>
-
-                <select
-                  class="form-select"
-                  id="contract-status-filter"
-                >
-                  <option value="">All eligible contracts</option>
-                  <option value="Active">Active</option>
-                  <option value="Expiring">Expiring soon</option>
-                </select>
-              </div>
-
-              <div class="col-xl-2 col-lg-3 col-md-6">
-                <label class="form-label" for="availability-filter">
-                  Availability
-                </label>
-
-                <select class="form-select" id="availability-filter">
-                  <option value="">All workers</option>
-                  <option value="Available">Available</option>
-                  <option value="Partial">Partially available</option>
-                </select>
-              </div>
-
-              <div class="col-xl-2 col-lg-2">
-                <button
-                  class="btn btn-light border w-100"
-                  type="reset"
-                >
-                  Reset
-                </button>
-              </div>
-
+          <section class="panel assignment-defaults">
+            <header class="assignment-defaults-header">
+              <div><span class="section-kicker">Inherited settings</span><h2>Group Defaults</h2><p>These settings apply to newly assigned workers unless an override is added.</p></div>
+              <a class="btn btn-outline-primary btn-icon" href="s02-group-details.html"><i class="bi bi-pencil"></i> Edit Defaults</a>
+            </header>
+            <div class="defaults-grid">
+              <div class="default-tile"><span class="default-icon tone-blue"><i class="bi bi-geo-alt"></i></span><div><small>Project / Site</small><strong>Riyadh International Expo</strong><span>Riyadh, Saudi Arabia</span></div></div>
+              <div class="default-tile"><span class="default-icon tone-blue"><i class="bi bi-calendar3"></i></span><div><small>Assignment Period</small><strong>Aug 1–31, 2026</strong><span>31 calendar days</span></div></div>
+              <div class="default-tile"><span class="default-icon tone-purple"><i class="bi bi-calendar-week"></i></span><div><small>Default Schedule</small><strong>Expo Workers Schedule</strong><span>Sun–Thu · 7 paid hours</span></div></div>
+              <div class="default-tile"><span class="default-icon tone-teal"><i class="bi bi-cash-stack"></i></span><div><small>Default Pay</small><strong>45.00 SAR / hour</strong><span>Overtime requires approval</span></div></div>
+              <div class="default-tile"><span class="default-icon tone-orange"><i class="bi bi-credit-card"></i></span><div><small>Pay Cycle</small><strong>Every two weeks</strong><span>Bank transfer</span></div></div>
             </div>
-          </div>
-        </form>
+            <div class="defaults-guidance"><i class="bi bi-info-circle"></i><span>A blue dot identifies workers with assignment-level overrides.</span></div>
+          </section>
 
-        <!-- Workers table -->
-        <section class="tamam-card">
-          <div
-            class="tamam-card-header d-flex justify-content-between align-items-center flex-wrap gap-3"
-          >
-            <div>
-              <h2 class="section-title">Eligible Workers</h2>
+          <section class="worker-transfer-grid">
+            <article class="panel worker-pool">
+              <header class="worker-pool-header">
+                <div><h2>Available Workers</h2><p>Eligible workers not currently assigned to this group.</p></div>
+                <span class="pool-count">42 available</span>
+              </header>
+              <div class="worker-tools">
+                <div class="search-control"><i class="bi bi-search"></i><input id="available-search" class="form-control" type="search" placeholder="Search name, ID, or mobile"></div>
+                <button class="btn btn-outline-secondary" type="button"><i class="bi bi-funnel"></i> Filters</button>
+              </div>
+              <div class="worker-table-scroll">
+                <table class="setup-table assignment-table" id="available-workers">
+                  <thead><tr><th class="check-cell"><input type="checkbox" aria-label="Select all available workers"></th><th>Worker</th><th>ID / Iqama</th><th>Current Job</th><th>Availability</th></tr></thead>
+                  <tbody>
+                    <tr><td class="check-cell"><input type="checkbox"></td><td><div class="worker-name"><span class="worker-initials">AM</span><div><strong>Ahmed Abdullah Mohammed</strong><small>+966 50 123 4567</small></div></div></td><td>1098765432</td><td>Installation Worker</td><td><span class="badge-soft badge-success">Available</span></td></tr>
+                    <tr><td class="check-cell"><input type="checkbox"></td><td><div class="worker-name"><span class="worker-initials tone-purple">SA</span><div><strong>Salem Mohammed Alotaibi</strong><small>+966 50 234 5678</small></div></div></td><td>1101234567</td><td>General Worker</td><td><span class="badge-soft badge-success">Available</span></td></tr>
+                    <tr><td class="check-cell"><input type="checkbox"></td><td><div class="worker-name"><span class="worker-initials tone-orange">AN</span><div><strong>Abdullah Nasser Alanazi</strong><small>+966 50 345 6789</small></div></div></td><td>1087654321</td><td>Painter</td><td><span class="badge-soft badge-warning">Until Aug 24</span></td></tr>
+                    <tr><td class="check-cell"><input type="checkbox"></td><td><div class="worker-name"><span class="worker-initials tone-blue">FM</span><div><strong>Fahad Saad Almutairi</strong><small>+966 50 456 7890</small></div></div></td><td>1122334455</td><td>Electrician</td><td><span class="badge-soft badge-success">Available</span></td></tr>
+                    <tr><td class="check-cell"><input type="checkbox"></td><td><div class="worker-name"><span class="worker-initials">RM</span><div><strong>Rashed Majed Alshahri</strong><small>+966 50 567 8901</small></div></div></td><td>1076543210</td><td>General Worker</td><td><span class="badge-soft badge-success">Available</span></td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <footer class="worker-pool-footer"><span>Showing 5 of 42 workers</span><div class="pagination-mini"><a class="active">1</a><a>2</a><a>3</a><a>…</a><a>9</a><a><i class="bi bi-chevron-right"></i></a></div></footer>
+            </article>
 
-              <p class="section-subtitle">
-                Only workers with eligible contracts are displayed.
-              </p>
+            <div class="transfer-actions" aria-label="Worker assignment actions">
+              <div class="transfer-hint"><strong>Move selected</strong><span>Select one or more rows</span></div>
+              <button class="btn btn-primary" type="button" data-assign-workers><span>Add to Group</span><i class="bi bi-arrow-right"></i></button>
+              <button class="btn btn-outline-primary" type="button" data-toast-message="Selected workers will be added with custom assignment settings"><span>Add &amp; Override</span><i class="bi bi-sliders"></i></button>
+              <button class="btn btn-outline-danger" type="button" data-remove-workers><i class="bi bi-arrow-left"></i><span>Remove</span></button>
             </div>
 
-            <div class="selected-workers-indicator">
-              <span id="selected-workers-count">0</span>
-              workers selected
-            </div>
-          </div>
+            <article class="panel worker-pool assigned-pool">
+              <header class="worker-pool-header">
+                <div><h2>Assigned Workers</h2><p>Workers included in this group.</p></div>
+                <span class="pool-count pool-count-blue">5 shown</span>
+              </header>
+              <div class="worker-tools">
+                <div class="search-control"><i class="bi bi-search"></i><input id="assigned-search" class="form-control" type="search" placeholder="Search assigned workers"></div>
+                <button class="btn btn-outline-secondary" type="button"><i class="bi bi-sliders"></i> View</button>
+              </div>
+              <div class="worker-table-scroll">
+                <table class="setup-table assignment-table assigned-table" id="assigned-workers">
+                  <thead><tr><th class="check-cell"><input type="checkbox" aria-label="Select all assigned workers"></th><th>Worker</th><th>Role</th><th>Pay Rate</th><th>Assignment</th><th></th></tr></thead>
+                  <tbody>
+                    <tr><td class="check-cell"><input type="checkbox"></td><td><div class="worker-name"><span class="worker-initials">AH</span><div><strong>Ali Mohammed Alharbi</strong><small>W-0008</small></div></div></td><td>Worker</td><td>45.00 SAR</td><td><span class="badge-soft badge-success">Active</span></td><td><button class="icon-btn" aria-label="Configure worker"><i class="bi bi-sliders"></i></button></td></tr>
+                    <tr class="has-override"><td class="check-cell"><input type="checkbox"></td><td><div class="worker-name"><span class="override-dot"></span><span class="worker-initials tone-purple">MA</span><div><strong>Mohammed Fahad Alotaibi</strong><small>W-0012 · Override</small></div></div></td><td>Supervisor</td><td><strong class="override-value">65.00 SAR</strong></td><td><span class="badge-soft badge-success">Active</span></td><td><button class="icon-btn" aria-label="Configure worker"><i class="bi bi-sliders"></i></button></td></tr>
+                    <tr><td class="check-cell"><input type="checkbox"></td><td><div class="worker-name"><span class="worker-initials tone-blue">SD</span><div><strong>Saud Abdullah Aldosari</strong><small>W-0019</small></div></div></td><td>Worker</td><td>45.00 SAR</td><td><span class="badge-soft badge-success">Active</span></td><td><button class="icon-btn" aria-label="Configure worker"><i class="bi bi-sliders"></i></button></td></tr>
+                    <tr><td class="check-cell"><input type="checkbox"></td><td><div class="worker-name"><span class="worker-initials tone-orange">NS</span><div><strong>Nawaf Mansour Alshammari</strong><small>W-0024</small></div></div></td><td>Worker</td><td>45.00 SAR</td><td><span class="badge-soft badge-success">Active</span></td><td><button class="icon-btn" aria-label="Configure worker"><i class="bi bi-sliders"></i></button></td></tr>
+                    <tr><td class="check-cell"><input type="checkbox"></td><td><div class="worker-name"><span class="worker-initials">YK</span><div><strong>Yasser Khaled Almutairi</strong><small>W-0031</small></div></div></td><td>Worker</td><td>45.00 SAR</td><td><span class="badge-soft badge-success">Active</span></td><td><button class="icon-btn" aria-label="Configure worker"><i class="bi bi-sliders"></i></button></td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <footer class="worker-pool-footer"><span>Showing 5 assigned workers</span><span class="override-legend"><i></i> 1 worker has overrides</span></footer>
+            </article>
+          </section>
 
-          <div class="table-responsive workforce-table-wrap">
-            <table class="table workforce-table align-middle">
-              <thead>
-                <tr>
-                  <th class="worker-checkbox-column">
-                    <input
-                      class="form-check-input"
-                      id="select-all-workers"
-                      type="checkbox"
-                      aria-label="Select all visible workers"
-                    >
-                  </th>
-
-                  <th>Worker</th>
-                  <th>ID / Iqama</th>
-                  <th>Active Contract</th>
-                  <th>Pay Basis</th>
-                  <th>Availability</th>
-                  <th>Assignment Period</th>
-                  <th>Settings</th>
-                </tr>
-              </thead>
-
-              <tbody>
-
-                <tr
-                  data-assignment-worker
-                  data-name="Ahmed Ali Mohammed"
-                  data-identity="1054123456"
-                  data-mobile="0501234567"
-                  data-contract-status="Active"
-                  data-availability="Available"
-                >
-                  <td>
-                    <input
-                      class="form-check-input worker-select"
-                      type="checkbox"
-                      aria-label="Select Ahmed Ali Mohammed"
-                    >
-                  </td>
-
-                  <td>
-                    <div class="worker-identity">
-                      <span class="worker-avatar">AM</span>
-
-                      <div>
-                        <strong>Ahmed Ali Mohammed</strong>
-                        <small>0501234567</small>
-                      </div>
-                    </div>
-                  </td>
-
-                  <td>1054123456</td>
-
-                  <td>
-                    <strong class="table-value">CTR-2026-0142</strong>
-                    <small class="table-subvalue">
-                      01 Aug – 30 Sep 2026
-                    </small>
-                  </td>
-
-                  <td>
-                    <strong class="table-value">Hourly</strong>
-                    <small class="table-subvalue">31.25 SAR</small>
-                  </td>
-
-                  <td>
-                    <span class="status-badge status-success">
-                      Available
-                    </span>
-                  </td>
-
-                  <td>
-                    <div class="assignment-period">
-                      <input
-                        class="form-control form-control-sm"
-                        type="date"
-                        value="2026-08-10"
-                        aria-label="Ahmed assignment start date"
-                      >
-
-                      <span>to</span>
-
-                      <input
-                        class="form-control form-control-sm"
-                        type="date"
-                        value="2026-08-25"
-                        aria-label="Ahmed assignment end date"
-                      >
-                    </div>
-                  </td>
-
-                  <td>
-                    <button
-                      class="icon-button"
-                      type="button"
-                      data-configure-worker
-                      data-worker-name="Ahmed Ali Mohammed"
-                      data-bs-toggle="modal"
-                      data-bs-target="#worker-settings-modal"
-                      aria-label="Configure Ahmed Ali Mohammed"
-                    >
-                      <i class="bi bi-sliders"></i>
-                    </button>
-                  </td>
-                </tr>
-
-                <tr
-                  data-assignment-worker
-                  data-name="Mohammed Ali Hassan"
-                  data-identity="1055234567"
-                  data-mobile="0502345678"
-                  data-contract-status="Active"
-                  data-availability="Available"
-                >
-                  <td>
-                    <input
-                      class="form-check-input worker-select"
-                      type="checkbox"
-                      aria-label="Select Mohammed Ali Hassan"
-                    >
-                  </td>
-
-                  <td>
-                    <div class="worker-identity">
-                      <span class="worker-avatar avatar-green">MH</span>
-
-                      <div>
-                        <strong>Mohammed Ali Hassan</strong>
-                        <small>0502345678</small>
-                      </div>
-                    </div>
-                  </td>
-
-                  <td>1055234567</td>
-
-                  <td>
-                    <strong class="table-value">CTR-2026-0156</strong>
-                    <small class="table-subvalue">
-                      05 Aug – 31 Oct 2026
-                    </small>
-                  </td>
-
-                  <td>
-                    <strong class="table-value">Daily</strong>
-                    <small class="table-subvalue">250.00 SAR</small>
-                  </td>
-
-                  <td>
-                    <span class="status-badge status-success">
-                      Available
-                    </span>
-                  </td>
-
-                  <td>
-                    <div class="assignment-period">
-                      <input
-                        class="form-control form-control-sm"
-                        type="date"
-                        value="2026-08-10"
-                        aria-label="Mohammed assignment start date"
-                      >
-
-                      <span>to</span>
-
-                      <input
-                        class="form-control form-control-sm"
-                        type="date"
-                        value="2026-08-25"
-                        aria-label="Mohammed assignment end date"
-                      >
-                    </div>
-                  </td>
-
-                  <td>
-                    <button
-                      class="icon-button"
-                      type="button"
-                      data-configure-worker
-                      data-worker-name="Mohammed Ali Hassan"
-                      data-bs-toggle="modal"
-                      data-bs-target="#worker-settings-modal"
-                      aria-label="Configure Mohammed Ali Hassan"
-                    >
-                      <i class="bi bi-sliders"></i>
-                    </button>
-                  </td>
-                </tr>
-
-                <tr
-                  data-assignment-worker
-                  data-name="Ali Hassan Abdullah"
-                  data-identity="1056345678"
-                  data-mobile="0503456789"
-                  data-contract-status="Expiring"
-                  data-availability="Partial"
-                >
-                  <td>
-                    <input
-                      class="form-check-input worker-select"
-                      type="checkbox"
-                      aria-label="Select Ali Hassan Abdullah"
-                    >
-                  </td>
-
-                  <td>
-                    <div class="worker-identity">
-                      <span class="worker-avatar avatar-orange">AA</span>
-
-                      <div>
-                        <strong>Ali Hassan Abdullah</strong>
-                        <small>0503456789</small>
-                      </div>
-                    </div>
-                  </td>
-
-                  <td>1056345678</td>
-
-                  <td>
-                    <strong class="table-value">CTR-2026-0168</strong>
-                    <small class="table-subvalue">
-                      Ends 20 Aug 2026
-                    </small>
-                  </td>
-
-                  <td>
-                    <strong class="table-value">Hourly</strong>
-                    <small class="table-subvalue">29.00 SAR</small>
-                  </td>
-
-                  <td>
-                    <span class="status-badge status-warning">
-                      Partial
-                    </span>
-                  </td>
-
-                  <td>
-                    <div class="assignment-period">
-                      <input
-                        class="form-control form-control-sm"
-                        type="date"
-                        value="2026-08-10"
-                        aria-label="Ali assignment start date"
-                      >
-
-                      <span>to</span>
-
-                      <input
-                        class="form-control form-control-sm"
-                        type="date"
-                        value="2026-08-20"
-                        aria-label="Ali assignment end date"
-                      >
-                    </div>
-                  </td>
-
-                  <td>
-                    <button
-                      class="icon-button"
-                      type="button"
-                      data-configure-worker
-                      data-worker-name="Ali Hassan Abdullah"
-                      data-bs-toggle="modal"
-                      data-bs-target="#worker-settings-modal"
-                      aria-label="Configure Ali Hassan Abdullah"
-                    >
-                      <i class="bi bi-sliders"></i>
-                    </button>
-                  </td>
-                </tr>
-
-                <tr
-                  data-assignment-worker
-                  data-name="Salem Fahad Hamad"
-                  data-identity="1057456789"
-                  data-mobile="0504567890"
-                  data-contract-status="Active"
-                  data-availability="Available"
-                >
-                  <td>
-                    <input
-                      class="form-check-input worker-select"
-                      type="checkbox"
-                      aria-label="Select Salem Fahad Hamad"
-                    >
-                  </td>
-
-                  <td>
-                    <div class="worker-identity">
-                      <span class="worker-avatar avatar-purple">SH</span>
-
-                      <div>
-                        <strong>Salem Fahad Hamad</strong>
-                        <small>0504567890</small>
-                      </div>
-                    </div>
-                  </td>
-
-                  <td>1057456789</td>
-
-                  <td>
-                    <strong class="table-value">CTR-2026-0174</strong>
-                    <small class="table-subvalue">
-                      01 Aug – 30 Sep 2026
-                    </small>
-                  </td>
-
-                  <td>
-                    <strong class="table-value">Daily</strong>
-                    <small class="table-subvalue">275.00 SAR</small>
-                  </td>
-
-                  <td>
-                    <span class="status-badge status-success">
-                      Available
-                    </span>
-                  </td>
-
-                  <td>
-                    <div class="assignment-period">
-                      <input
-                        class="form-control form-control-sm"
-                        type="date"
-                        value="2026-08-10"
-                        aria-label="Salem assignment start date"
-                      >
-
-                      <span>to</span>
-
-                      <input
-                        class="form-control form-control-sm"
-                        type="date"
-                        value="2026-08-25"
-                        aria-label="Salem assignment end date"
-                      >
-                    </div>
-                  </td>
-
-                  <td>
-                    <button
-                      class="icon-button"
-                      type="button"
-                      data-configure-worker
-                      data-worker-name="Salem Fahad Hamad"
-                      data-bs-toggle="modal"
-                      data-bs-target="#worker-settings-modal"
-                      aria-label="Configure Salem Fahad Hamad"
-                    >
-                      <i class="bi bi-sliders"></i>
-                    </button>
-                  </td>
-                </tr>
-
-              </tbody>
-            </table>
-          </div>
-
-          <div class="table-footer">
-            <span id="assignment-results-count">
-              Showing 4 eligible workers
-            </span>
-
-            <span>
-              Assignment dates must remain within the group and contract
-              periods.
-            </span>
-          </div>
-        </section>
-
-        <!-- Validation message -->
-        <div
-          class="selection-warning mt-4"
-          id="selection-warning"
-          role="alert"
-          hidden
-        >
-          <i class="bi bi-exclamation-triangle"></i>
-          Select at least one worker before creating the group.
+          <footer class="assignment-savebar panel">
+            <div><strong>Review before saving</strong><span>New assignments inherit the defaults shown above.</span></div>
+            <div class="d-flex gap-2"><a class="btn btn-outline-secondary" href="s01-groups.html">Cancel</a><button class="btn btn-primary btn-icon" data-toast-message="Worker assignments saved successfully"><i class="bi bi-check2"></i> Save Assignment</button></div>
+          </footer>
         </div>
-
-        <div class="form-action-bar mt-4">
-          <a class="btn btn-light border" href="s03-work-schedule.html">
-            <i class="bi bi-arrow-left me-2"></i>
-            Previous
-          </a>
-
-          <div class="d-flex gap-2">
-            <button
-              class="btn btn-outline-primary"
-              id="save-assignment-draft"
-              type="button"
-            >
-              <i class="bi bi-save me-2"></i>
-              Save Draft
-            </button>
-
-            <button
-              class="btn btn-success"
-              id="create-group-button"
-              type="button"
-            >
-              <i class="bi bi-check-lg me-2"></i>
-              Create Group
-            </button>
-          </div>
-        </div>
-
       </div>
     </main>
   </div>
-
-  <!-- Worker settings modal -->
-  <div
-    class="modal fade"
-    id="worker-settings-modal"
-    tabindex="-1"
-    aria-labelledby="worker-settings-title"
-    aria-hidden="true"
-  >
-    <div class="modal-dialog modal-lg modal-dialog-centered">
-      <div class="modal-content tamam-modal">
-
-        <div class="modal-header">
-          <div>
-            <h2 class="modal-title fs-5" id="worker-settings-title">
-              Assignment Settings
-            </h2>
-
-            <p class="text-secondary small mb-0" id="configured-worker-name">
-              Worker name
-            </p>
-          </div>
-
-          <button
-            class="btn-close"
-            type="button"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          ></button>
-        </div>
-
-        <div class="modal-body">
-          <div class="override-notice mb-4">
-            <i class="bi bi-info-circle"></i>
-
-            <span>
-              Keep “Use group default” selected unless this worker needs an
-              authorized exception.
-            </span>
-          </div>
-
-          <div class="row g-4">
-
-            <div class="col-md-6">
-              <label class="form-label" for="assignment-role">
-                Role in group
-              </label>
-
-              <select class="form-select" id="assignment-role">
-                <option>Temporary Worker</option>
-                <option>Team Leader</option>
-                <option>Supervisor</option>
-                <option>Site Coordinator</option>
-              </select>
-            </div>
-
-            <div class="col-md-6">
-              <label class="form-label" for="worker-schedule">
-                Work schedule
-              </label>
-
-              <select class="form-select" id="worker-schedule">
-                <option>Use group default</option>
-                <option>Standard Day Shift</option>
-                <option>Evening Shift</option>
-                <option>Flexible Schedule</option>
-              </select>
-            </div>
-
-            <div class="col-md-6">
-              <label class="form-label" for="worker-attendance-policy">
-                Attendance policy
-              </label>
-
-              <select class="form-select" id="worker-attendance-policy">
-                <option>Use group default</option>
-                <option>Standard Attendance Policy</option>
-                <option>Strict Attendance Policy</option>
-                <option>Flexible Attendance Policy</option>
-              </select>
-            </div>
-
-            <div class="col-md-6">
-              <label class="form-label" for="worker-payroll-policy">
-                Payroll policy
-              </label>
-
-              <select class="form-select" id="worker-payroll-policy">
-                <option>Use contract / group default</option>
-                <option>Hourly Standard Policy</option>
-                <option>Daily Standard Policy</option>
-                <option>Event Payment Policy</option>
-              </select>
-            </div>
-
-            <div class="col-md-6">
-              <label class="form-label" for="worker-pay-rate">
-                Pay rate override
-              </label>
-
-              <div class="input-group">
-                <input
-                  class="form-control"
-                  id="worker-pay-rate"
-                  type="number"
-                  min="0"
-                  step="0.01"
-                  placeholder="Leave empty to use contract"
-                >
-
-                <span class="input-group-text">SAR</span>
-              </div>
-            </div>
-
-            <div class="col-md-6">
-              <label class="form-label" for="override-reason">
-                Override reason
-              </label>
-
-              <input
-                class="form-control"
-                id="override-reason"
-                type="text"
-                placeholder="Required when overriding defaults"
-              >
-            </div>
-
-          </div>
-        </div>
-
-        <div class="modal-footer">
-          <button
-            class="btn btn-light border"
-            type="button"
-            data-bs-dismiss="modal"
-          >
-            Cancel
-          </button>
-
-          <button
-            class="btn btn-primary"
-            id="save-worker-settings"
-            type="button"
-          >
-            Save Settings
-          </button>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-  <!-- Create group confirmation -->
-  <div
-    class="modal fade"
-    id="create-group-modal"
-    tabindex="-1"
-    aria-labelledby="create-group-modal-title"
-    aria-hidden="true"
-  >
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content tamam-modal">
-
-        <div class="modal-header">
-          <h2 class="modal-title fs-5" id="create-group-modal-title">
-            Create this group?
-          </h2>
-
-          <button
-            class="btn-close"
-            type="button"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          ></button>
-        </div>
-
-        <div class="modal-body">
-          <div class="confirmation-icon">
-            <i class="bi bi-people"></i>
-          </div>
-
-          <p class="text-center mb-2">
-            The group will be created with
-            <strong id="confirmation-worker-count">0 workers</strong>.
-          </p>
-
-          <p class="text-secondary text-center small mb-0">
-            You can edit the group and its assignments later according to your
-            permissions.
-          </p>
-        </div>
-
-        <div class="modal-footer">
-          <button
-            class="btn btn-light border"
-            type="button"
-            data-bs-dismiss="modal"
-          >
-            Cancel
-          </button>
-
-          <button
-            class="btn btn-success"
-            id="confirm-create-group"
-            type="button"
-          >
-            <i class="bi bi-check-lg me-2"></i>
-            Confirm &amp; Create
-          </button>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-  <!-- Toast -->
-  <div class="toast-container position-fixed bottom-0 end-0 p-3">
-    <div
-      id="assignment-toast"
-      class="toast tamam-toast"
-      role="status"
-      aria-live="polite"
-      aria-atomic="true"
-    >
-      <div class="toast-header">
-        <i class="bi bi-check-circle-fill text-success me-2"></i>
-        <strong class="me-auto">Group assignment</strong>
-
-        <button
-          class="btn-close"
-          type="button"
-          data-bs-dismiss="toast"
-          aria-label="Close"
-        ></button>
-      </div>
-
-      <div class="toast-body" id="assignment-toast-message">
-        Changes saved successfully.
-      </div>
-    </div>
-  </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="../assets/js/layout.js"></script>
-  <script src="../assets/js/app.js"></script>
-  <script src="../assets/js/assign-workers.js"></script>
+  <script src="../assets/js/setup.js"></script>
 </body>
 </html>
